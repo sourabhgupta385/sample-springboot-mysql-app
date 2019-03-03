@@ -18,8 +18,9 @@ public class PlacesServiesImpl implements PlaceService {
 	@Override
 	public void addPlaces() {
 		Places place = new Places();
-		place.setCity("kota");
-		place.setName("fs");
+		place.setCity("Jodhpur");
+		place.setName("ab");
+		place.setState("Rajasthan")
 		repo.save(place);
 		
 	}

@@ -20,7 +20,7 @@ public class PlacesServiesImpl implements PlaceService {
 		Places place = new Places();
 		place.setCity("Jodhpur");
 		place.setName("ab");
-		place.setState("Rajasthan")
+		place.setState("Rajasthan");
 		repo.save(place);
 		
 	}

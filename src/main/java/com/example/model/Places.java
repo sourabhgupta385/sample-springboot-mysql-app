@@ -12,6 +12,7 @@ public class Places {
 	private int id;
 	private String name;
 	private String city;
+	private String state;
 	public String getName() {
 		return name;
 	}
@@ -23,6 +24,12 @@ public class Places {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 }

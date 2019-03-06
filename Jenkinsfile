@@ -134,7 +134,7 @@ node
         }
    }
    
-   /*if(env.UNIT_TESTING == 'True')
+   if(env.UNIT_TESTING == 'True')
    {
         stage('Unit Testing')
    	{
@@ -147,8 +147,9 @@ node
         stage('Code Coverage')
    	{
 	    sh 'mvn package'
+	    jacoco(deltaBranchCoverage: '10', deltaClassCoverage: '10', deltaComplexityCoverage: '10', deltaInstructionCoverage: '10', deltaLineCoverage: '10', deltaMethodCoverage: '20')
    	}
-   }*/
+   }
 
    stage('Dev - Build Application')
    {

@@ -126,7 +126,13 @@ node
         stage('Code Quality Analysis')
         {
             sh 'mvn sonar:sonar -Dsonar.host.url="${SONAR_HOST_URL}"'
-	    checkStatus(env.SONAR_PROJECT_KEY, "${SONAR_HOST_URL}")	
+	    timeout(time: 1, unit: 'HOURS') { 
+                 def qg = waitForQualityGate() 
+                 if (qg.status != 'OK') {
+                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                 }
+	    }
+	    //checkStatus(env.SONAR_PROJECT_KEY, "${SONAR_HOST_URL}")	
         }
    }
    

@@ -124,15 +124,6 @@ node
    {
        sh 'mvn clean compile'
    }
-  
-   if(env.CODE_QUALITY == 'True')
-   {
-        stage('Code Quality Analysis')
-        {
-            sh 'mvn sonar:sonar -Dsonar.host.url="${SONAR_HOST_URL}"'
-	    checkStatus(env.SONAR_PROJECT_KEY, "${SONAR_HOST_URL}")	
-        }
-   }
    
    if(env.UNIT_TESTING == 'True')
    {
@@ -150,7 +141,16 @@ node
 	    jacoco(deltaBranchCoverage: '10', deltaClassCoverage: '10', deltaComplexityCoverage: '10', deltaInstructionCoverage: '10', deltaLineCoverage: '10', deltaMethodCoverage: '20')
    	}
    }
-
+   
+   if(env.CODE_QUALITY == 'True')
+   {
+        stage('Code Quality Analysis')
+        {
+            sh 'mvn sonar:sonar -Dsonar.host.url="${SONAR_HOST_URL}"'
+	    checkStatus(env.SONAR_PROJECT_KEY, "${SONAR_HOST_URL}")	
+        }
+   }
+	
    stage('Dev - Build Application')
    {
        buildApp("${APP_NAME}-dev", "${MS_NAME}")

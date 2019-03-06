@@ -101,8 +101,8 @@ node
    stage('First Time Deployment'){
         readProperties()
         firstTimeDevDeployment("${APP_NAME}-dev", "${MS_NAME}")
-        firstTimeTestDeployment("${APP_NAME}-dev", "${APP_NAME}-test", "${MS_NAME}")
-        firstTimeProdDeployment("${APP_NAME}-dev", "${APP_NAME}-prod", "${MS_NAME}")
+        //firstTimeTestDeployment("${APP_NAME}-dev", "${APP_NAME}-test", "${MS_NAME}")
+        //firstTimeProdDeployment("${APP_NAME}-dev", "${APP_NAME}-prod", "${MS_NAME}")
    }
    
    stage('Checkout')
@@ -123,7 +123,7 @@ node
         }
    }
    
-   if(env.UNIT_TESTING == 'True')
+   /*if(env.UNIT_TESTING == 'True')
    {
         stage('Unit Testing')
    	{
@@ -137,7 +137,7 @@ node
    	{
 	    sh 'mvn package'
    	}
-   }
+   }*/
 
    stage('Dev - Build Application')
    {
@@ -153,7 +153,7 @@ node
    {
        openshiftTag(namespace: '$APP_NAME-dev', srcStream: '$MS_NAME', srcTag: 'latest', destStream: '$MS_NAME', destTag: 'test')
    }
-
+   /*
    stage('Test - Deploy Application')
    {
        deployApp("${APP_NAME}-test", "${MS_NAME}")
@@ -173,7 +173,8 @@ node
 	 	}
     	}
    }
-   
+   */
+   /*
    if(env.SECURITY_TESTING == 'True')
    {
         stage('Security Testing')
@@ -196,6 +197,6 @@ node
    {
        deployApp("${APP_NAME}-prod", "${MS_NAME}")
    }	
- 
+   */
 }
 }

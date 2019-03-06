@@ -167,7 +167,7 @@ node
 		{
 	    		container('jnlp')
 	    		{
-	         		checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: "${GIT_SOURCE_URL}"]]])
+	         		checkout([$class: 'GitSCM', branches: [[name: "*/ /*${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: "${GIT_SOURCE_URL}"]]])
 		 		sh 'mvn integration-test'
 	    		}
 	 	}

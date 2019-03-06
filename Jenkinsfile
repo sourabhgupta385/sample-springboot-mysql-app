@@ -83,8 +83,8 @@ def deployApp(projectName,msName){
     }
 }
 
-def checkStatus(sonarProjectKey){
-    sh "output=$(curl '${SONAR_HOST_URL}'/api/qualitygates/project_status?projectKey="+sonarProjectKey+" | jq '.projectStatus.status')"
+def checkStatus(sonarProjectKey, sonarHostURL){
+    sh "output=$(curl "+sonarHostURL+"/api/qualitygates/project_status?projectKey="+sonarProjectKey+" | jq '.projectStatus.status')"
 }
 
 podTemplate(cloud:'openshift',label: 'selenium', 
@@ -124,7 +124,7 @@ node
         stage('Code Quality Analysis')
         {
             sh 'mvn sonar:sonar -Dsonar.host.url="${SONAR_HOST_URL}"'
-	    checkStatus(env.SONAR_PROJECT_KEY)	
+	    checkStatus(env.SONAR_PROJECT_KEY, "${SONAR_HOST_URL}")	
         }
    }
    

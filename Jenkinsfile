@@ -12,7 +12,7 @@ def readProperties(){
     env.CODE_COVERAGE = property.CODE_COVERAGE
     env.INTEGRATION_TESTING = property.INTEGRATION_TESTING
     env.SECURITY_TESTING = property.SECURITY_TESTING
-    
+    env.SONAR_PROJECT_KEY = property.SONAR_PROJECT_KEY
 }
 
 def firstTimeDevDeployment(projectName,msName){
@@ -83,6 +83,10 @@ def deployApp(projectName,msName){
     }
 }
 
+def checkStatus(sonarProjectKey){
+    sh "output=$(curl '${SONAR_HOST_URL}'/api/qualitygates/project_status?projectKey="+sonarProjectKey+" | jq '.projectStatus.status')"
+}
+
 podTemplate(cloud:'openshift',label: 'selenium', 
   containers: [
     containerTemplate(
@@ -120,6 +124,7 @@ node
         stage('Code Quality Analysis')
         {
             sh 'mvn sonar:sonar -Dsonar.host.url="${SONAR_HOST_URL}"'
+	    checkStatus(env.SONAR_PROJECT_KEY)	
         }
    }
    

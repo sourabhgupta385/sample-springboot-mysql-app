@@ -138,7 +138,7 @@ node
         stage('Code Coverage')
    	{
 	    sh 'mvn package'
-	    jacoco(deltaBranchCoverage: '10', deltaClassCoverage: '10', deltaComplexityCoverage: '10', deltaInstructionCoverage: '10', deltaLineCoverage: '10', deltaMethodCoverage: '20')
+	    jacoco(minimumLineCoverage: '10')
    	}
    }
    
@@ -151,7 +151,7 @@ node
         }
    }
 	
-   stage('Dev - Build Application')
+   /*stage('Dev - Build Application')
    {
        buildApp("${APP_NAME}-dev", "${MS_NAME}")
    }
@@ -160,11 +160,11 @@ node
    {
        deployApp("${APP_NAME}-dev", "${MS_NAME}")
    }
-	
+   
    stage('Tagging Image for Testing')
    {
        openshiftTag(namespace: '$APP_NAME-dev', srcStream: '$MS_NAME', srcTag: 'latest', destStream: '$MS_NAME', destTag: 'test')
-   }
+   }*/
    /*
    stage('Test - Deploy Application')
    {

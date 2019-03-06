@@ -84,7 +84,8 @@ def deployApp(projectName,msName){
 }
 
 def checkStatus(sonarProjectKey, sonarHostURL){
-    sh "output=$(curl "+sonarHostURL+"/api/qualitygates/project_status?projectKey="+sonarProjectKey+" | jq '.projectStatus.status')"
+    def output_cmd = "output=$(curl "+sonarHostURL+"/api/qualitygates/project_status?projectKey="+sonarProjectKey+" | jq '.projectStatus.status')"
+    sh output_cmd
 }
 
 podTemplate(cloud:'openshift',label: 'selenium', 

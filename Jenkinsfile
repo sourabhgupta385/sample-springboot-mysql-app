@@ -84,7 +84,7 @@ def deployApp(projectName,msName){
 }
 
 def checkStatus(sonarProjectKey, sonarHostURL){
-    sh "curl "+sonarHostURL+"/api/qualitygates/project_status?projectKey="+sonarProjectKey > status.json"
+    sh "curl "+sonarHostURL+"/api/qualitygates/project_status?projectKey="+sonarProjectKey+" > status.json"
     def json = readJSON file:'status.json'
     echo "${json.projectStatus.status}"
     if ("${json.projectStatus.status}" != "OK") {

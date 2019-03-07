@@ -138,7 +138,7 @@ node
         stage('Code Coverage')
    	{
 	    sh 'mvn package'
-	    jacoco(minimumLineCoverage: '8', changeBuildStatus: True)
+	    jacoco(minimumLineCoverage: '8', changeBuildStatus: true)
    	}
    }
    

@@ -127,8 +127,7 @@
 	    <!-- <phase>package</phase> -->
             <goals>
                 <goal>check</goal>
-            </goals>
-            <configuration><rules><rule>
+		    <rules><rule>
              <element>CLASS</element>
              <limits>
               <limit>
@@ -137,7 +136,9 @@
                 <minimum>0.80</minimum>
 		     </limit>
             </limits>
-          </rule></rules></configuration>
+          </rule></rules>
+            </goals>
+           
         </execution>
             </executions>
          </plugin>

@@ -137,8 +137,9 @@ node
    {
         stage('Code Coverage')
    	{
-	    sh 'mvn package'
-	    jacoco(minimumLineCoverage: '8', changeBuildStatus: true)
+	    sh 'mvn org.jacoco:jacoco-maven-plugin:0.8.0:report'	
+	    jacoco()
+	    sh 'mvn org.jacoco:jacoco-maven-plugin:0.8.0:check'	
    	}
    }
    

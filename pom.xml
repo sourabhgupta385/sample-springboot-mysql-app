@@ -123,10 +123,10 @@
                   </goals>
                </execution>
 		    <execution>
-            <id>check</id>
-	    <!-- <phase>package</phase> -->
+            <id>default-check</id>
             <goals>
                 <goal>check</goal>
+	    </goals>	    
 		    <rules><rule>
              <element>CLASS</element>
              <limits>
@@ -137,7 +137,7 @@
 		     </limit>
             </limits>
           </rule></rules>
-            </goals>
+            
            
         </execution>
             </executions>

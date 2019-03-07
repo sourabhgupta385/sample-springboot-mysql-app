@@ -136,8 +136,7 @@ node
    if(env.CODE_COVERAGE == 'True')
    {
         stage('Code Coverage')
-   	{
-	    sh 'mvn org.jacoco:jacoco-maven-plugin:0.8.0:report'	
+   	{	
 	    jacoco()
 	    sh 'mvn package'	
    	}

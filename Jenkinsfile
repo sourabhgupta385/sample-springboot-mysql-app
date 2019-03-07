@@ -111,8 +111,8 @@ node
    stage('First Time Deployment'){
         readProperties()
         firstTimeDevDeployment("${APP_NAME}-dev", "${MS_NAME}")
-        //firstTimeTestDeployment("${APP_NAME}-dev", "${APP_NAME}-test", "${MS_NAME}")
-        //firstTimeProdDeployment("${APP_NAME}-dev", "${APP_NAME}-prod", "${MS_NAME}")
+        firstTimeTestDeployment("${APP_NAME}-dev", "${APP_NAME}-test", "${MS_NAME}")
+        firstTimeProdDeployment("${APP_NAME}-dev", "${APP_NAME}-prod", "${MS_NAME}")
    }
    
    stage('Checkout')
@@ -151,7 +151,7 @@ node
         }
    }
 	
-   /*stage('Dev - Build Application')
+   stage('Dev - Build Application')
    {
        buildApp("${APP_NAME}-dev", "${MS_NAME}")
    }
@@ -164,8 +164,8 @@ node
    stage('Tagging Image for Testing')
    {
        openshiftTag(namespace: '$APP_NAME-dev', srcStream: '$MS_NAME', srcTag: 'latest', destStream: '$MS_NAME', destTag: 'test')
-   }*/
-   /*
+   }
+   
    stage('Test - Deploy Application')
    {
        deployApp("${APP_NAME}-test", "${MS_NAME}")
@@ -179,14 +179,14 @@ node
 		{
 	    		container('jnlp')
 	    		{
-	         		checkout([$class: 'GitSCM', branches: [[name: "*/ /*${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: "${GIT_SOURCE_URL}"]]])
+	         		checkout([$class: 'GitSCM', branches: [[name: "*/${BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: "${GIT_SOURCE_URL}"]]])
 		 		sh 'mvn integration-test'
 	    		}
 	 	}
     	}
    }
-   */
-   /*
+   
+   
    if(env.SECURITY_TESTING == 'True')
    {
         stage('Security Testing')
@@ -209,6 +209,6 @@ node
    {
        deployApp("${APP_NAME}-prod", "${MS_NAME}")
    }	
-   */
+  
 }
 }

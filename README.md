@@ -20,7 +20,7 @@ mysql -u $MYSQL_USER -p$MYSQL_PASSWORD
 
 * _Source Code Management:_ **_Git_**
 * _Code Quality Analysis:_ **_SonarQube_**
-* _Unit Testing:_ **_JUnit_**
+* _Unit Testing:_ **_JUnit5_**
 * _Code Coverage:_ **_JaCoCo_**
 * _Build Tool:_ **_Maven_**
 * _Integration Testing:_ **_Selenium_**
